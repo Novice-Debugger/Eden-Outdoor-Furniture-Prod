@@ -68,7 +68,7 @@ const HeroSection = () => {
       <div 
         className="absolute w-full h-full bg-cover"
         style={{ 
-          backgroundImage: "url('/assets/images/about/hero.jpg')",
+          backgroundImage: `url(${process.env.PUBLIC_URL}'/assets/images/about/hero.jpg')`,
           backgroundPosition: 'center center',
           height: "100vh",
           filter: 'brightness(0.7)'
@@ -201,7 +201,7 @@ const BrandStorySection = () => {
               transition={{ duration: 1, ease: "easeOut" }}
             >
               <img 
-                src="/assets/images/about/about-2.png"
+                src={`${process.env.PUBLIC_URL}/assets/images/about/about-2.png`}
                 alt="Elegant outdoor furniture setting"
                 className="w-full h-full object-cover"
               />
@@ -275,7 +275,7 @@ const CraftsmanshipSection = () => {
             <div key={item} className="relative overflow-hidden">
               <div className="aspect-square bg-primary" style={{filter: "brightness(0.62)"}}>
                 <img
-                  src={`/assets/images/about/about-3-${item}.jpg`}
+                  src={`${process.env.PUBLIC_URL}/assets/images/about/about-3-${item}.jpg`}
                   alt={`Craftsmanship detail ${item}`}
                   className="w-full h-64 object-cover overflow-hidden"
                 />
@@ -353,7 +353,7 @@ const SustainabilitySection = () => {
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
               <img 
-                src="/assets/images/about/hero.jpg"
+                src={`${process.env.PUBLIC_URL}/assets/images/about/hero.jpg`}
                 alt="Sustainable materials and practices"
                 className="w-full h-full object-cover"
               />

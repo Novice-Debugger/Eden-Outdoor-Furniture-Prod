@@ -78,7 +78,7 @@ const ProductCard = ({ category }) => {
       >
         <div className="relative w-full aspect-square overflow-hidden mb-4 bg-gray-100">
           <img
-            src={images[currentImage] || 'https://via.placeholder.com/400x400?text=No+Image'}
+            src={`${process.env.PUBLIC_URL}${images[currentImage]}` || 'https://via.placeholder.com/400x400?text=No+Image'}
             alt={`${category.name} showcase`}
             className="w-full object-cover transition-transform duration-500 group-hover:scale-105"
             style={{height: "30vw"}}

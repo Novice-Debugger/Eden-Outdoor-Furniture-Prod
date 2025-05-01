@@ -133,7 +133,7 @@ const ProductDetail = () => {
                 {/* Main Image - using aspect-square for consistent 1:1 aspect ratio */}
                 <div className="aspect-square bg-white relative" ref={mainImageRef}>
                   <motion.img
-                    src={product.images[selectedImage]}
+                    src={`${process.env.PUBLIC_URL}${product.images[selectedImage]}`}
                     alt={product.name}
                     className="w-full object-contain object-center"
                     key={selectedImage}
@@ -156,7 +156,7 @@ const ProductDetail = () => {
                       onClick={() => handleThumbnailClick(index)}
                     >
                       <img
-                        src={image}
+                        src={`${process.env.PUBLIC_URL}${image}`}
                         alt={`${product.name} - View ${index + 1}`}
                         className="w-full h-full object-cover object-center hover:opacity-80 transition-opacity"
                       />
@@ -244,7 +244,7 @@ const ProductDetail = () => {
                       {/* Using aspect-square for consistent 1:1 aspect ratio */}
                       <div className="relative overflow-hidden aspect-square mb-4">
                         <img
-                          src={relatedProduct.images[0]}
+                          src={`${process.env.PUBLIC_URL}${relatedProduct.images[0]}`}
                           alt={relatedProduct.name}
                           className="w-full h-52 object-cover object-center transition-transform duration-500 group-hover:scale-105"
                         />

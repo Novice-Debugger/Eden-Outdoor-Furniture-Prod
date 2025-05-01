@@ -52,7 +52,7 @@ const OutdoorOasisSection = () => {
       <div 
         className="bg-image absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
         style={{ 
-          backgroundImage: "url('/assets/images/outdoor-oasis.jpg')",
+          backgroundImage: `url('${process.env.PUBLIC_URL}/assets/images/outdoor-oasis.jpg')`,
           backgroundPosition: 'center bottom' 
         }}
       ></div>

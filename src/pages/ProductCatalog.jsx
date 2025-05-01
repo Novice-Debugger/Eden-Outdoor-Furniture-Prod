@@ -44,7 +44,7 @@ const ProductCard = ({ product }) => {
         {/* Fixed height and width container with strict aspect ratio */}
         <div className="w-full relative overflow-hidden bg-gray-100" style={{ paddingBottom: '100%' }}>
           <img 
-            src={product.images[currentImage]} 
+            src={`${process.env.PUBLIC_URL}${product.images[currentImage]}`} 
             alt={product.name}
             className="absolute top-0 left-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
             loading="lazy"

@@ -114,7 +114,7 @@ const OutdoorOasisSection = () => {
             </p>
             
             <motion.a
-              href="Eden-Outdoor-Furniture-Prod/product/chairs"
+              href="#product"
               className="inline-block px-6 py-3 bg-accent border-2 border-accent text-primary hover:bg-transparent hover:text-white hover:border-white font-medium transition-colors duration-300"
               initial="hidden"
               animate={controls}

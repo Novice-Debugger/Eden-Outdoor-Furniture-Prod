@@ -5,11 +5,11 @@ const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   
   const heroImages = [
-    '/assets/images/hero/hero-1.jpg',
-    '/assets/images/hero/hero-2.jpg',
-    '/assets/images/hero/hero-3.jpg',
-    '/assets/images/hero/hero-4.PNG',
-    '/assets/images/hero/hero-5.jpg',
+    `${process.env.PUBLIC_URL}/assets/images/hero/hero-1.jpg`,
+    `${process.env.PUBLIC_URL}/assets/images/hero/hero-2.jpg`,
+    `${process.env.PUBLIC_URL}/assets/images/hero/hero-3.jpg`,
+    `${process.env.PUBLIC_URL}/assets/images/hero/hero-4.PNG`,
+    `${process.env.PUBLIC_URL}/assets/images/hero/hero-5.jpg`,
   ];
   
   const headlines = {

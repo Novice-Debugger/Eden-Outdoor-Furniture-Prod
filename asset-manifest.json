@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Eden-Outdoor-Furniture-Prod/static/css/main.3cf08986.css",
-    "main.js": "/Eden-Outdoor-Furniture-Prod/static/js/main.8bf85786.js",
+    "main.js": "/Eden-Outdoor-Furniture-Prod/static/js/main.b351b313.js",
     "index.html": "/Eden-Outdoor-Furniture-Prod/index.html",
     "main.3cf08986.css.map": "/Eden-Outdoor-Furniture-Prod/static/css/main.3cf08986.css.map",
-    "main.8bf85786.js.map": "/Eden-Outdoor-Furniture-Prod/static/js/main.8bf85786.js.map"
+    "main.b351b313.js.map": "/Eden-Outdoor-Furniture-Prod/static/js/main.b351b313.js.map"
   },
   "entrypoints": [
     "static/css/main.3cf08986.css",
-    "static/js/main.8bf85786.js"
+    "static/js/main.b351b313.js"
   ]
 }

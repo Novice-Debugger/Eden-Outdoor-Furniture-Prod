@@ -2486,7 +2486,6 @@ export const getFeaturedProducts = () => {
 
 export const getProductCategories = () => {
     const categories = [
-        { id: 'all', name: 'Outdoor Furniture Collection' },
         { id: 'chairs', name: 'Chairs' },
         { id: 'bar-chairs', name: 'Bar Chairs' },
         { id: 'sofas', name: 'Sofas' },

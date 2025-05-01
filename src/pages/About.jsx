@@ -68,7 +68,7 @@ const HeroSection = () => {
       <div 
         className="absolute w-full h-full bg-cover"
         style={{ 
-          backgroundImage: `url(${process.env.PUBLIC_URL}'/assets/images/about/hero.jpg')`,
+          backgroundImage: `url('${process.env.PUBLIC_URL}/assets/images/about/hero.jpg')`,
           backgroundPosition: 'center center',
           height: "100vh",
           filter: 'brightness(0.7)'

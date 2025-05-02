@@ -10,7 +10,7 @@ import './styles/globals.css';
 
 const App = () => {
   return (
-    <Router basename="/Eden-Outdoor-Furniture-Prod">
+    <Router>
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />

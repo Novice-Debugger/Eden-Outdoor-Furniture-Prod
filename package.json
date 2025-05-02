@@ -1,7 +1,7 @@
 {
   "name": "final-code",
   "version": "0.1.0",
-  "homepage": "https://Novice-Debugger.github.io/Eden-Outdoor-Furniture-Prod",
+  "homepage": "https://www.edenoutdoorfurniture.com",
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.0",

@@ -2272,8 +2272,7 @@ const products = [
         },
         "images": [
             "/assets/images/products/data/Sofa/ED-614/1.jpg",
-            "/assets/images/products/data/Sofa/ED-614/2.jpg",
-            "/assets/images/products/data/Sofa/ED-614/3.jpg"
+            "/assets/images/products/data/Sofa/ED-614/2.jpg"
         ],
         "colors": ["Cloud Gray", "Navy Blue", "Olive Green"],
         "materials": ["Aluminum", "Olefin Fabric", "High-Density Foam"],

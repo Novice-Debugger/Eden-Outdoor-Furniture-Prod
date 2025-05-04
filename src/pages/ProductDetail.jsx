@@ -189,7 +189,7 @@ const ProductDetail = () => {
                 </div>
                 
                 {/* Product Details */}
-                {product.dimensions && (
+                {/* {product.dimensions && (
                   <div className="border-t border-gray-200 pt-6">
                     <h3 className="text-xl font-display text-primary mb-4">Dimensions</h3>
                     <div className="grid grid-cols-2 gap-4 text-secondary">
@@ -201,7 +201,7 @@ const ProductDetail = () => {
                       ))}
                     </div>
                   </div>
-                )}
+                )} */}
                 
                 {/* Materials */}
                 {product.materials && (

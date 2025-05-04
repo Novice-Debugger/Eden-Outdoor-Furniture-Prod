@@ -76,6 +76,54 @@ const ProductCatalog = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentCategory, setCurrentCategory] = useState(null);
+
+  const subheading = {
+    "chairs" : `Lounge in the language of luxury! Our clientele expects three things: Comfort, Luxury and 
+Sophistication; and we deliver all these in one thing. With its compact shape, these handmade 
+chairs complement the spaces beautifully in the balconies, patios or the gardens. Offers 
+maximum relaxation and negligible upkeep. Though light-weight, they very well handle large 
+weights and long hour sittings. And remember For every season every sky-your place with us 
+never fades! 
+`,
+    "lamps": `Switch on style and illuminate the luxe! 
+Celebration of warm ambiance and thoughtful sculptures. These pieces are ideal to decorate 
+the interiors as well as outdoor spaces. So turn down the lights and let the magic begin. This 
+collection is just perfect for lighting up cozy seatings, sunset celebrations and adds elegance to 
+the indoors.  
+Subtle, Stylish and Charming`,
+    "day-beds": `The classic deybed line is the end result of meticulous craftsmanship and creative thinking. As 
+perfectly quoted, “Details make perfection, and perfection is not a detail” the collection thrives in 
+elements requiring a low maintenance with plush cushions and performance-grade protection. 
+Makeover your outside area into a Resort-style outdoor space with minimal efforts.  
+From sleek, woven curves to generously upholstered canopies, each design strikes a balance of 
+style and longevity in equal measure. Our daybeds whisper rest-whether beside the pool, in the 
+garden, or tucked away on a quiet terrace; inviting you to stretch out, slow down and stay 
+awhile! 
+Built for sun, rain and everything in between!`,
+    "sofas": `Our premium sofa sets are ideal for any weather and are an impeccable specimen of our 
+unique artistry. These sofas aren't merely just furniture but lets you elevate your outdoor 
+living. Discover our wide range of weather-proof luxurious sofas which are an excellent 
+combination of sophistication and enduring materials. From plush, chic and seamless curves, 
+every detail invites you to extend at ease. 
+The materials used are hand-picked with utmost care-premium woods, excellent performance 
+fabrics, corrosion-free metals which offer both resilience and durability.`,
+    "bar-chairs": `Crafted for those who crave and appreciate finer things in life! Live our finest lavish and elegant 
+line of Bar Chairs. These chairs bring with them organic charm along with contemporary 
+weavings, meticulous lines and sleek durability. Enjoy the ergonomically designed backrests 
+and precise-angled legs for sturdy framework without compromising in class. The mesh details, 
+hand weaving and climate-conscious cushions add on to architectural details.  
+Perfect for exclusive outdoor furniture, outdoor bar lounges, patio counters; Don’t forget 
+it's not just a seat but a Statement. 
+Pull up, lean back and drink up! `,
+    "swings": `Your perfect sway awaits! 
+Rediscover the stillness-artistically suspended in the air and surrounded by mindful designs. 
+Decorate any outdoor space into comfort of soft motion and surreal luxury. 
+Each swing is crafted for serving the purpose of personal aesthetics and extraordinary 
+relaxation. Every element including the cushions, handwoven ropes and the fade-resistant 
+fabrics, are strong enough to endure the weather gracefully.  Ideal example of luxury balcony 
+furniture and premium outdoor designs.  
+Let the hours slip by, cradled in quiet motion.`
+  }
   
   // Memoize the categories to prevent re-renders
   const categories = useMemo(() => getProductCategories(), []);
@@ -126,7 +174,7 @@ const ProductCatalog = () => {
       <main>
         {/* Page Header */}
         <section className="bg-primary text-white py-20">
-          <div className="mx-auto px-4 flex flex-col justify-center" style={{height: "40vh"}}>
+          <div className="mx-auto px-4 flex flex-col justify-center" style={{minHeight: "40vh", paddingTop: "10vh"}}>
             <motion.h1
               className="text-4xl md:text-5xl font-display mb-4 text-center"
               initial={{ opacity: 0, y: -20 }}
@@ -142,12 +190,13 @@ const ProductCatalog = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
             ></motion.div>
             <motion.p
-              className="text-lg text-center max-w-2xl mx-auto"
+              className="text-lg text-center mx-auto"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
+              style={{maxWidth: "70vw"}}
             >
-              Discover our collection of {getCategoryDisplayName().toLowerCase()} designed with minimalist aesthetics and premium quality materials.
+              {subheading[currentCategory?.id]}
             </motion.p>
           </div>
         </section>

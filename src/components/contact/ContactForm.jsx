@@ -12,11 +12,21 @@ const ContactForm = () => {
   
   const [formStatus, setFormStatus] = useState({
     submitted: false,
-    success: false,
+    success: true,
     message: ''
   });
   
   const [errors, setErrors] = useState({});
+  
+  // Google Form configuration
+  const FORM_ACTION_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdPGV2c4NqBOBa6al8ZCU0pjwLTX2XGf0rl_x3W0qpzFWsdyQ/formResponse";
+  const ENTRY_IDS = {
+    name: "entry.1094971945",
+    email: "entry.324786647",
+    contact: "entry.818926445", // For phone number
+    subjectOptional: "entry.399041556", // For optional subject
+    subjectRequired: "entry.1122105496", // For required field (we'll use this for message)
+  };
   
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -64,26 +74,52 @@ const ContactForm = () => {
     e.preventDefault();
     
     if (validateForm()) {
-      // In a real application, you would send the form data to your backend
-      // For now, we'll simulate a successful submission
+      setFormStatus({
+        submitted: true,
+        success: false,
+        message: 'Submitting your message...'
+      });
       
-      // Simulate API call
-      setTimeout(() => {
-        setFormStatus({
-          submitted: true,
-          success: true,
-          message: 'Thank you for your message. We will contact you shortly!'
+      // Create FormData object for Google Form submission
+      const form = new FormData();
+      form.append(ENTRY_IDS.name, formData.name);
+      form.append(ENTRY_IDS.email, formData.email);
+      form.append(ENTRY_IDS.contact, formData.phone || ''); // Optional field
+      form.append(ENTRY_IDS.subjectOptional, formData.subject || ''); // Optional field
+      form.append(ENTRY_IDS.subjectRequired, formData.message); // Using message as required subject
+      
+      // Submit to Google Form
+      fetch(FORM_ACTION_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: form,
+      })
+        .then(() => {
+          // Success callback
+          setFormStatus({
+            submitted: true,
+            success: true,
+            message: 'Thank you for your message. We will contact you shortly!'
+          });
+          
+          // Reset form
+          setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            subject: '',
+            message: ''
+          });
+        })
+        .catch((err) => {
+          // Error callback
+          console.error("Form submission error:", err);
+          setFormStatus({
+            submitted: true,
+            success: false,
+            message: 'There was an error submitting your message. Please try again later.'
+          });
         });
-        
-        // Reset form
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          subject: '',
-          message: ''
-        });
-      }, 1000);
     }
   };
   

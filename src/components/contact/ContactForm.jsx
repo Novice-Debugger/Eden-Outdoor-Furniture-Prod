@@ -30,10 +30,20 @@ const ContactForm = () => {
   
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+    
+    // For phone field, only allow numeric input
+    if (name === 'phone') {
+      const numericValue = value.replace(/\D/g, '');
+      setFormData({
+        ...formData,
+        [name]: numericValue
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value
+      });
+    }
     
     // Clear field-specific error when user types
     if (errors[name]) {
@@ -57,6 +67,13 @@ const ContactForm = () => {
       newErrors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = 'Email is invalid';
+    }
+    
+    // Validate phone - must be exactly 10 digits
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'Phone number is required';
+    } else if (!/^\d{10}$/.test(formData.phone)) {
+      newErrors.phone = 'Phone number must be exactly 10 digits';
     }
     
     // Validate message
@@ -84,7 +101,7 @@ const ContactForm = () => {
       const form = new FormData();
       form.append(ENTRY_IDS.name, formData.name);
       form.append(ENTRY_IDS.email, formData.email);
-      form.append(ENTRY_IDS.contact, formData.phone || ''); // Optional field
+      form.append(ENTRY_IDS.contact, formData.phone);
       form.append(ENTRY_IDS.subjectOptional, formData.subject || ''); // Optional field
       form.append(ENTRY_IDS.subjectRequired, formData.message); // Using message as required subject
       
@@ -195,7 +212,7 @@ const ContactForm = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <div>
               <label htmlFor="phone" className="block text-sm font-medium text-secondary mb-1">
-                Phone Number (Optional)
+                Phone Number *
               </label>
               <motion.input
                 type="tel"
@@ -203,11 +220,18 @@ const ContactForm = () => {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full p-3 border border-light-bg focus:outline-none"
+                maxLength={10}
+                className={`w-full p-3 border ${
+                  errors.phone ? 'border-red-500' : 'border-light-bg'
+                } focus:outline-none`}
                 whileFocus="focus"
                 whileTap="focus"
                 variants={inputVariants}
+                required
               />
+              {errors.phone && (
+                <p className="mt-1 text-sm text-red-500">{errors.phone}</p>
+              )}
             </div>
             
             <div>

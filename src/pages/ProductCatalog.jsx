@@ -169,6 +169,21 @@ Let the hours slip by, cradled in quiet motion.`
           name="description"
           content={`Browse our collection of ${getCategoryDisplayName().toLowerCase()} designed with minimalist aesthetics and premium quality materials.`}
         />
+        <link rel="canonical" href={`https://edenoutdoorfurniture.com/product/${category}`} />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://edenoutdoorfurniture.com/product/${category}`} />
+        <meta property="og:title" content={`${getCategoryDisplayName()} | Eden Outdoor Furniture`} />
+        <meta property="og:description" content={`Browse our collection of ${getCategoryDisplayName().toLowerCase()} designed with minimalist aesthetics and premium quality materials.`} />
+        <meta property="og:image" content="https://edenoutdoorfurniture.com/assets/images/og-image.jpg" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={`https://edenoutdoorfurniture.com/product/${category}`} />
+        <meta name="twitter:title" content={`${getCategoryDisplayName()} | Eden Outdoor Furniture`} />
+        <meta name="twitter:description" content={`Browse our collection of ${getCategoryDisplayName().toLowerCase()} designed with minimalist aesthetics and premium quality materials.`} />
+        <meta name="twitter:image" content="https://edenoutdoorfurniture.com/assets/images/og-image.jpg" />
       </Helmet>
       
       <main>

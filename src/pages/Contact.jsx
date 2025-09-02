@@ -28,6 +28,21 @@ const Contact = () => {
           name="description"
           content="Get in touch with Eden Outdoor Furniture. Visit our showroom in Miami or contact us for custom design inquiries and customer support."
         />
+        <link rel="canonical" href="https://edenoutdoorfurniture.com/contact" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://edenoutdoorfurniture.com/contact" />
+        <meta property="og:title" content="Contact Us | Eden Outdoor Furniture" />
+        <meta property="og:description" content="Get in touch with Eden Outdoor Furniture. Visit our showroom in Miami or contact us for custom design inquiries and customer support." />
+        <meta property="og:image" content="https://edenoutdoorfurniture.com/assets/images/og-image.jpg" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://edenoutdoorfurniture.com/contact" />
+        <meta name="twitter:title" content="Contact Us | Eden Outdoor Furniture" />
+        <meta name="twitter:description" content="Get in touch with Eden Outdoor Furniture. Visit our showroom in Miami or contact us for custom design inquiries and customer support." />
+        <meta name="twitter:image" content="https://edenoutdoorfurniture.com/assets/images/og-image.jpg" />
       </Helmet>
 
       <main>

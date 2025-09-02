@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useInView, useAnimation } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -12,30 +13,6 @@ const OutdoorOasisSection = () => {
   const controls = useAnimation();
   const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
   
-  // GSAP animation for parallax effect
-  useEffect(() => {
-    const section = sectionRef.current;
-    
-    if (section) {
-      gsap.fromTo(
-        section.querySelector('.bg-image'),
-        {
-          y: 0,
-        },
-        {
-          y: 100,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: section,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: true,
-          },
-        }
-      );
-    }
-  }, []);
-  
   // Framer Motion animations
   useEffect(() => {
     if (isInView) {
@@ -46,7 +23,7 @@ const OutdoorOasisSection = () => {
   return (
     <section 
       ref={sectionRef}
-      className="py-24 relative overflow-hidden"
+      className="py-24 relative overflow-hidden bg-light-bg"
     >
       {/* Background Image with Parallax Effect */}
       <div 
@@ -113,9 +90,7 @@ const OutdoorOasisSection = () => {
               Each piece we create is a harmonious blend of artistry and functionality, meticulously crafted to withstand the elements while elevating your outdoor living experience. From intimate balconies to expansive gardens, our furniture becomes the cornerstone of memories made under open skies.
             </p>
             
-            <motion.a
-              href="#products"
-              className="inline-block px-6 py-3 bg-accent border-2 border-accent text-primary hover:bg-transparent hover:text-white hover:border-white font-medium transition-colors duration-300"
+            <motion.div
               initial="hidden"
               animate={controls}
               variants={{
@@ -127,8 +102,13 @@ const OutdoorOasisSection = () => {
                 }
               }}
             >
-              Discover Our Collections
-            </motion.a>
+              <Link
+                to="/product/chairs"
+                className="inline-block px-6 py-3 bg-accent border-2 border-accent text-primary hover:bg-transparent hover:text-white hover:border-white font-medium transition-colors duration-300"
+              >
+                Discover Our Collections
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
       </div>

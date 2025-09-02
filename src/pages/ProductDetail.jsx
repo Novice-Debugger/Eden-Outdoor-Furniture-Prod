@@ -99,6 +99,68 @@ const ProductDetail = () => {
       <Helmet>
         <title>{`${product.name} | Eden Outdoor Furniture`}</title>
         <meta name="description" content={product.description} />
+        <link rel="canonical" href={`https://edenoutdoorfurniture.com/product/${category}/${productId}`} />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="product" />
+        <meta property="og:url" content={`https://edenoutdoorfurniture.com/product/${category}/${productId}`} />
+        <meta property="og:title" content={`${product.name} | Eden Outdoor Furniture`} />
+        <meta property="og:description" content={product.description} />
+        <meta property="og:image" content={`https://edenoutdoorfurniture.com${product.images[0]}`} />
+        <meta property="product:brand" content="Eden Outdoor Furniture" />
+        <meta property="product:category" content={category} />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={`https://edenoutdoorfurniture.com/product/${category}/${productId}`} />
+        <meta name="twitter:title" content={`${product.name} | Eden Outdoor Furniture`} />
+        <meta name="twitter:description" content={product.description} />
+        <meta name="twitter:image" content={`https://edenoutdoorfurniture.com${product.images[0]}`} />
+        
+        {/* Structured Data for Breadcrumbs */}
+        <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://edenoutdoorfurniture.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": category.charAt(0).toUpperCase() + category.slice(1).replace('-', ' '),
+              "item": `https://edenoutdoorfurniture.com/product/${category}`
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": product.name,
+              "item": `https://edenoutdoorfurniture.com/product/${category}/${productId}`
+            }
+          ]
+        })}
+        </script>
+        
+        {/* Product Structured Data */}
+        <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "name": product.name,
+          "description": product.description,
+          "image": product.images.map(img => `https://edenoutdoorfurniture.com${img}`),
+          "brand": {
+            "@type": "Brand",
+            "name": "Eden Outdoor Furniture"
+          },
+          "category": category,
+          "url": `https://edenoutdoorfurniture.com/product/${category}/${productId}`
+        })}
+        </script>
       </Helmet>
       
       <main className="py-16">

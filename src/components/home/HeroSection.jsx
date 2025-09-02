@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const HeroSection = () => {
@@ -120,12 +121,12 @@ const HeroSection = () => {
             variants={textVariants}
             transition={{ delay: 0.4 }}
           >
-            <a
-              href="#products"
+            <Link
+              to="/product/chairs"
               className="inline-block px-6 py-3 bg-accent border-2 border-accent text-primary font-body font-medium text-lg hover:bg-transparent hover:text-white hover:border-white transition-colors duration-300"
             >
               Explore Collection
-            </a>
+            </Link>
           </motion.div>
         </div>
       </div>

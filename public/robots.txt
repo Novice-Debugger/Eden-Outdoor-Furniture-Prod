@@ -1,3 +1,20 @@
-# https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+
+# Disallow crawling of admin areas, private pages, or duplicate content
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*?*
+Disallow: /search
+
+# Allow crawling of important pages
+Allow: /
+Allow: /about
+Allow: /contact
+Allow: /product/
+
+# Sitemap location
+Sitemap: https://edenoutdoorfurniture.com/sitemap.xml
+
+# Crawl delay (optional - 1 second)
+Crawl-delay: 1

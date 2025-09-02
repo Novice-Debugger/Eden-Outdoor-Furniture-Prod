@@ -18,6 +18,21 @@ const About = () => {
       <Helmet>
         <title>About Us | Eden Outdoor Furniture</title>
         <meta name="description" content="Learn about our commitment to craftsmanship, sustainability, and luxury outdoor living at Eden Outdoor Furniture." />
+        <link rel="canonical" href="https://edenoutdoorfurniture.com/about" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://edenoutdoorfurniture.com/about" />
+        <meta property="og:title" content="About Us | Eden Outdoor Furniture" />
+        <meta property="og:description" content="Learn about our commitment to craftsmanship, sustainability, and luxury outdoor living at Eden Outdoor Furniture." />
+        <meta property="og:image" content="https://edenoutdoorfurniture.com/assets/images/og-image.jpg" />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://edenoutdoorfurniture.com/about" />
+        <meta name="twitter:title" content="About Us | Eden Outdoor Furniture" />
+        <meta name="twitter:description" content="Learn about our commitment to craftsmanship, sustainability, and luxury outdoor living at Eden Outdoor Furniture." />
+        <meta name="twitter:image" content="https://edenoutdoorfurniture.com/assets/images/og-image.jpg" />
       </Helmet>
 
       <main>

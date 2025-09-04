@@ -1,13 +1,226 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+/* Custom Tippy.js Eden Theme */
+.tippy-box[data-theme~="eden"] {
+  background: #001a23 !important;
+  background-color: #001a23 !important;
+  color: #fcfffd !important;
+  border: 2px solid transparent !important;
+  background-clip: padding-box;
+  position: relative;
+  box-shadow: 0 32px 64px -12px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(130, 189, 237, 0.3), inset 0 1px 0 rgba(130, 189, 237, 0.1) !important;
+  border-radius: 30px !important;
+  font-size: 15px;
+  line-height: 1.6;
+  padding: 28px !important;
+  max-width: 420px;
+  backdrop-filter: blur(20px);
+  overflow: hidden;
+}
+
+/* More specific override for any default Tippy styles */
+div[data-tippy-root] .tippy-box[data-theme~="eden"] {
+  background: #001a23 !important;
+  background-color: #001a23 !important;
+}
+
+.tippy-box[data-theme~="eden"]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #82bded, #274753, #82bded);
+  border-radius: 30px 30px 0 0;
+}
+
+.tippy-box[data-theme~="eden"]::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(130, 189, 237, 0.05) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: -1;
+}
+
+.tippy-box[data-theme~="eden"][data-placement^="top"] > .tippy-arrow::before {
+  border-top-color: #001a23 !important;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.tippy-box[data-theme~="eden"][data-placement^="bottom"]
+  > .tippy-arrow::before {
+  border-bottom-color: #001a23 !important;
+  filter: drop-shadow(0 -2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.tippy-box[data-theme~="eden"][data-placement^="left"] > .tippy-arrow::before {
+  border-left-color: #001a23 !important;
+  filter: drop-shadow(2px 0 4px rgba(0, 0, 0, 0.3));
+}
+
+.tippy-box[data-theme~="eden"][data-placement^="right"] > .tippy-arrow::before {
+  border-right-color: #001a23 !important;
+  filter: drop-shadow(-2px 0 4px rgba(0, 0, 0, 0.3));
+}
+
+.tippy-box[data-theme~="eden"] .feature-tooltip {
+  padding: 0;
+  color: #fcfffd;
+  position: relative;
+  background: #001a23 !important;
+  background-color: #001a23 !important;
+}
+
+.tippy-box[data-theme~="eden"] .feature-tooltip::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(130, 189, 237, 0.5),
+    transparent
+  );
+  border-radius: 4px;
+}
+
+.tippy-box[data-theme~="eden"] .feature-tooltip h4 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #fcfffd;
+  position: relative;
+  padding-bottom: 12px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.tippy-box[data-theme~="eden"] .feature-tooltip h4::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -4px;
+  font-size: 1.6rem;
+  color: #82bded;
+  opacity: 0.4;
+  z-index: -1;
+}
+
+.tippy-box[data-theme~="eden"] .feature-tooltip h4::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #82bded 0%, #82bded 50%, transparent 100%);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(130, 189, 237, 0.4);
+}
+
+.tippy-box[data-theme~="eden"] .feature-tooltip p {
+  margin-bottom: 20px;
+  line-height: 1.7;
+  color: #e8f1f2;
+  font-weight: 400;
+  font-size: 15px;
+  text-align: justify;
+}
+
+.tippy-box[data-theme~="eden"] .feature-tooltip ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: rgba(39, 71, 83, 0.3) !important;
+  border: 1px solid rgba(130, 189, 237, 0.3);
+  border-radius: 20px;
+  padding: 16px;
+  position: relative;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.tippy-box[data-theme~="eden"] .feature-tooltip ul::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(130, 189, 237, 0.4),
+    transparent
+  );
+}
+
+.tippy-box[data-theme~="eden"] .feature-tooltip li {
+  padding: 8px 0;
+  color: #059669;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.tippy-box[data-theme~="eden"] .feature-tooltip li:hover {
+  padding-left: 4px;
+  color: #047857;
+}
+
+.tippy-box[data-theme~="eden"] .feature-tooltip li:last-child {
+  border-bottom: none;
+}
+
+.tippy-box[data-theme~="eden"] .feature-tooltip li::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  margin-right: 12px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 4px rgba(5, 150, 105, 0.3);
+  position: relative;
+}
+
+.tippy-box[data-theme~="eden"] .feature-tooltip li::after {
+  content: "✓";
+  position: absolute;
+  left: 4px;
+  color: white;
+  font-weight: 700;
+  font-size: 10px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }

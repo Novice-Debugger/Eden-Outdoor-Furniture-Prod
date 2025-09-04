@@ -120,7 +120,6 @@ const ProductsSection = () => {
           <h2 className="text-3xl md:text-4xl font-display text-primary mb-4">
             Our Products
           </h2>
-          <div className="w-24 h-1 bg-accent mx-auto mb-6"></div>
           <p className="max-w-2xl mx-auto text-lg text-secondary">
             Discover our collection of meticulously crafted outdoor furniture,
             designed to transform your outdoor spaces into elegant retreats.

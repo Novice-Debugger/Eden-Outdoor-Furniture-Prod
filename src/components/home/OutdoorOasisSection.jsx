@@ -55,19 +55,6 @@ const OutdoorOasisSection = () => {
             Elevate Your Outdoor Oasis
           </motion.h2>
           
-          <motion.div
-            className="w-24 h-1 bg-accent mb-8"
-            initial="hidden"
-            animate={controls}
-            variants={{
-              hidden: { opacity: 0, width: 0 },
-              visible: { 
-                opacity: 1, 
-                width: 96,
-                transition: { duration: 0.8, delay: 0.2, ease: "easeOut" }
-              }
-            }}
-          ></motion.div>
           
           <motion.div
             className="prose prose-lg text-light-bg"

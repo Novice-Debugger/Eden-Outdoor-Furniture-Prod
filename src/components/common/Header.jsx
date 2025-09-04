@@ -68,9 +68,10 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full transition-all duration-300 ${
         getBackgroundColor()
       } py-6`}
+      style={{ zIndex: 10000 }}
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link to="/" className="flex flex-col justify-center">

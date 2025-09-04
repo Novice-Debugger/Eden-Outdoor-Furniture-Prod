@@ -3,6 +3,8 @@ import { Helmet } from 'react-helmet';
 import { motion, useInView, useAnimation } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import tippy from 'tippy.js';
+import 'tippy.js/dist/tippy.css';
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -40,7 +42,7 @@ const About = () => {
         <BrandStorySection />
         <CraftsmanshipSection />
         <SustainabilitySection />
-        <QuotesSection />
+        <InteractiveFeatureSection />
       </main>
     </>
   );
@@ -104,12 +106,6 @@ const HeroSection = () => {
           About Eden Outdoor Furniture
         </motion.h1>
         
-        <motion.div
-          className="w-24 h-1 bg-accent mx-auto mb-8"
-          initial={{ opacity: 0, width: 0 }}
-          animate={{ opacity: 1, width: 96 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-        ></motion.div>
         
         <motion.p
           className="text-xl md:text-2xl text-light-bg max-w-3xl mx-auto"
@@ -165,16 +161,6 @@ const BrandStorySection = () => {
               Indulge in Elegant Outdoor Furniture
             </motion.h2>
             
-            <motion.div
-              className="w-24 h-1 bg-accent mb-8"
-              custom={1}
-              initial="hidden"
-              animate={controls}
-              variants={{
-                hidden: { opacity: 0, width: 0 },
-                visible: { opacity: 1, width: 96, transition: { duration: 0.8, delay: 0.2, ease: "easeOut" } }
-              }}
-            ></motion.div>
             
             <motion.p
               className="text-lg text-secondary mb-6"
@@ -183,34 +169,25 @@ const BrandStorySection = () => {
               animate={controls}
               variants={textVariants}
             >
-              The profound artistry, minimal perfection and impeccable luxury is all that is needed to transform any open-air space into a retreat which you'd want to return to repeatedly. Eden Outdoor Furniture is a one-stop solution for durable luxurious furniture.
+              Bring timeless luxury to your open spaces with premium outdoor furniture in Vadodara. At Eden, we design pieces that combine comfort, durability, and style, turning patios, gardens, and poolside areas into elegant retreats.
             </motion.p>
             
             <motion.p
-              className="text-lg text-secondary mb-6"
+              className="text-lg text-secondary"
               custom={3}
               initial="hidden"
               animate={controls}
               variants={textVariants}
             >
-              Step into an oasis where luxury calls you endlessly. Our pieces are inspired by the echoes of Coco Chanel's quote: "Luxury must be comfortable, otherwise it isn't luxury." The premium outdoor furniture offered, blends durable luxury with uncompromised comfort, creating any space into comforting nooks.
-            </motion.p>
-            
-            <motion.p
-              className="text-lg text-secondary"
-              custom={4}
-              initial="hidden"
-              animate={controls}
-              variants={textVariants}
-            >
-              Savor premiumness, wrapped in design that feels like home—even when you've just arrived.
+              Crafted with care and inspired by minimal design, our collections ensure that every moment outdoors feels like home—beautiful, lasting, and truly luxurious.
             </motion.p>
           </div>
           
           {/* Right column - Image */}
-          <div className="w-full lg:w-1/2 order-1 lg:order-2">
+          <div className="w-full lg:w-1/2 order-1 lg:order-2 hidden lg:block">
             <motion.div
-              className="relative aspect-square lg:aspect-[4/5] overflow-hidden"
+              className="relative overflow-hidden"
+              style={{ height: '80vh', minHeight: '400px' }}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
               transition={{ duration: 1, ease: "easeOut" }}
@@ -278,7 +255,6 @@ const CraftsmanshipSection = () => {
           <h2 className="text-3xl md:text-4xl font-display text-primary mb-4">
             Crafted for the Outdoors, Designed for the Soul
           </h2>
-          <div className="w-24 h-1 bg-accent mx-auto mb-6"></div>
           <p className="max-w-2xl mx-auto text-lg text-secondary">
             Our commitment to excellence shines through in every piece we create, combining timeless design with uncompromising quality.
           </p>
@@ -389,15 +365,6 @@ const SustainabilitySection = () => {
               Commitment to Sustainability
             </motion.h2>
             
-            <motion.div
-              className="w-24 h-1 bg-accent mb-8 text-line"
-              initial="hidden"
-              animate={controls}
-              variants={{
-                hidden: { opacity: 0, width: 0 },
-                visible: { opacity: 1, width: 96, transition: { duration: 0.8, delay: 0.2, ease: "easeOut" } }
-              }}
-            ></motion.div>
             
             <p className="text-lg mb-6 text-line">
               Beauty shouldn't come at the cost of nature; this is the reason and the commitment on which we thrive. At Eden Outdoor Furniture, we promote sustainability through:
@@ -432,24 +399,247 @@ const SustainabilitySection = () => {
   );
 };
 
-// Quotes Section Component
-const QuotesSection = () => {
+// Interactive Feature Section Component
+const InteractiveFeatureSection = () => {
   const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
+  const imageRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
   
-  const quotes = [
-    "Crafted for the outdoors, designed for the souls.",
-    "Elevate every moment outdoors!",
-    "Not just furniture, but a way of living!",
-    "Where the outside feels like home.",
-    "Linger for the luxury",
-    "While the scenery pulls you in, comfort makes you stay!",
-    "The sky called you closer. The cushions asked you to stay.",
-    "Eyes on the view, seat so good you forgot to blink.",
-    "View is the bait. Comfort's the hook.",
-    "Instagram got you here. The seat made you cancel plans.",
-    "Leisure meets luxury"
+  // Hotspot data
+  const hotspots = [
+    {
+      id: 'teak-wood',
+      x: '25%',
+      y: '30%',
+      title: 'Premium Teak Wood',
+      content: `
+        <div class="feature-tooltip">
+          <h4>Premium Teak Wood</h4>
+          <p>Sourced from sustainable forests, our teak wood is naturally resistant to weather, insects, and decay. The natural oils provide built-in protection that lasts for decades.</p>
+          <ul>
+            <li>Natural weather resistance</li>
+            <li>Self-maintaining oils</li>
+            <li>Sustainable sourcing</li>
+          </ul>
+        </div>
+      `
+    },
+    {
+      id: 'weather-finish',
+      x: '70%',
+      y: '25%',
+      title: 'Weather-Resistant Finish',
+      content: `
+        <div class="feature-tooltip">
+          <h4>Weather-Resistant Finish</h4>
+          <p>Our specialized finish system provides UV protection and water resistance, ensuring your furniture maintains its beauty through all seasons.</p>
+          <ul>
+            <li>UV protection coating</li>
+            <li>Water-resistant seal</li>
+            <li>Long-lasting durability</li>
+          </ul>
+        </div>
+      `
+    },
+    {
+      id: 'ergonomic-design',
+      x: '45%',
+      y: '55%',
+      title: 'Ergonomic Design',
+      content: `
+        <div class="feature-tooltip">
+          <h4>Ergonomic Design</h4>
+          <p>Every curve and angle is crafted with comfort in mind. Our ergonomic approach ensures proper support for extended outdoor relaxation.</p>
+          <ul>
+            <li>Optimal back support</li>
+            <li>Comfortable arm height</li>
+            <li>Perfect seating angle</li>
+          </ul>
+        </div>
+      `
+    },
+    {
+      id: 'precision-joinery',
+      x: '15%',
+      y: '70%',
+      title: 'Precision Joinery',
+      content: `
+        <div class="feature-tooltip">
+          <h4>Precision Joinery</h4>
+          <p>Traditional joinery techniques combined with modern precision ensure structural integrity and longevity without compromising aesthetics.</p>
+          <ul>
+            <li>Mortise and tenon joints</li>
+            <li>No visible hardware</li>
+            <li>Maximum durability</li>
+          </ul>
+        </div>
+      `
+    },
+    {
+      id: 'cushion-tech',
+      x: '80%',
+      y: '65%',
+      title: 'Premium Cushions',
+      content: `
+        <div class="feature-tooltip">
+          <h4>Premium Cushions</h4>
+          <p>Quick-dry foam core with weather-resistant fabric covers. Designed for comfort and easy maintenance in outdoor environments.</p>
+          <ul>
+            <li>Quick-dry foam technology</li>
+            <li>UV-resistant fabric</li>
+            <li>Removable covers</li>
+          </ul>
+        </div>
+      `
+    }
   ];
+
+  // Initialize Tippy.js tooltips
+  useEffect(() => {
+    if (isInView && imageRef.current) {
+      const hotspotElements = imageRef.current.querySelectorAll('.hotspot');
+      
+      hotspotElements.forEach((element) => {
+        const hotspotId = element.getAttribute('data-hotspot');
+        const hotspotData = hotspots.find(h => h.id === hotspotId);
+        
+        if (hotspotData) {
+          tippy(element, {
+            content: hotspotData.content,
+            allowHTML: true,
+            interactive: true,
+            theme: 'eden',
+            placement: 'auto',
+            trigger: 'click',
+            maxWidth: 420,
+            animation: 'scale',
+            offset: [0, 15],
+            duration: [200, 150],
+            hideOnClick: true,
+            onMount(instance) {
+              // Apply styles immediately when tooltip is mounted
+              const applyStyles = () => {
+                const tippyBox = instance.popper.querySelector('.tippy-box');
+                if (tippyBox) {
+                  tippyBox.style.backgroundColor = '#001a23';
+                  tippyBox.style.background = '#001a23';
+                  tippyBox.style.borderRadius = '30px';
+                  tippyBox.style.padding = '24px';
+                  tippyBox.style.boxShadow = '0 32px 64px -12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(130, 189, 237, 0.3), inset 0 1px 0 rgba(130, 189, 237, 0.1)';
+                  tippyBox.style.zIndex = '30';
+                  
+                  const content = tippyBox.querySelector('.tippy-content');
+                  if (content) {
+                    content.style.backgroundColor = '#001a23';
+                    content.style.background = '#001a23';
+                    content.style.borderRadius = '30px';
+                  }
+                }
+              };
+              applyStyles();
+            },
+            onShow(instance) {
+              // Close other tooltips when opening a new one
+              hotspotElements.forEach(el => {
+                if (el !== element && el._tippy) {
+                  el._tippy.hide();
+                }
+              });
+              
+              // Force background color and rounded borders with JavaScript immediately
+              const applyStyles = () => {
+                const tippyBox = instance.popper.querySelector('.tippy-box');
+                if (tippyBox) {
+                  tippyBox.style.backgroundColor = '#001a23';
+                  tippyBox.style.background = '#001a23';
+                  tippyBox.style.borderRadius = '30px';
+                  tippyBox.style.padding = '24px';
+                  tippyBox.style.boxShadow = '0 32px 64px -12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(130, 189, 237, 0.3), inset 0 1px 0 rgba(130, 189, 237, 0.1)';
+                  tippyBox.style.zIndex = '30';
+                  
+                  // Also set on the content wrapper
+                  const content = tippyBox.querySelector('.tippy-content');
+                  if (content) {
+                    content.style.backgroundColor = '#001a23';
+                    content.style.background = '#001a23';
+                    content.style.borderRadius = '30px';
+                  }
+                  
+                  // And on the feature tooltip
+                  const featureTooltip = tippyBox.querySelector('.feature-tooltip');
+                  if (featureTooltip) {
+                    featureTooltip.style.backgroundColor = '#001a23';
+                    featureTooltip.style.background = '#001a23';
+                    featureTooltip.style.color = '#fcfffd';
+                  }
+                  
+                  // Style the list container
+                  const listContainer = tippyBox.querySelector('.feature-tooltip ul');
+                  if (listContainer) {
+                    listContainer.style.background = 'rgba(39, 71, 83, 0.3)';
+                    listContainer.style.borderRadius = '20px';
+                    listContainer.style.border = '1px solid rgba(130, 189, 237, 0.3)';
+                    listContainer.style.boxShadow = 'inset 0 1px 2px rgba(0, 0, 0, 0.2)';
+                    listContainer.style.padding = '24px';
+                    listContainer.style.margin = '16px 0';
+                  }
+                  
+                  // Style heading and text colors
+                  const heading = tippyBox.querySelector('.feature-tooltip h4');
+                  if (heading) {
+                    heading.style.color = '#fcfffd';
+                    heading.style.textShadow = '0 1px 2px rgba(0, 0, 0, 0.3)';
+                  }
+                  
+                  const paragraph = tippyBox.querySelector('.feature-tooltip p');
+                  if (paragraph) {
+                    paragraph.style.color = '#e8f1f2';
+                  }
+                  
+                  // Style list items
+                  const listItems = tippyBox.querySelectorAll('.feature-tooltip li');
+                  listItems.forEach(item => {
+                    item.style.color = '#e8f1f2';
+                    item.style.padding = '0';
+                    item.style.fontSize = '14px';
+                    item.style.fontWeight = '400';
+                    item.style.display = 'flex';
+                    item.style.alignItems = 'center';
+                    
+                    // Add tick mark
+                    if (!item.querySelector('.tick-mark')) {
+                      const tickMark = document.createElement('span');
+                      tickMark.className = 'tick-mark';
+                      tickMark.innerHTML = '✓';
+                      tickMark.style.color = '#059669';
+                      tickMark.style.fontSize = '16px';
+                      tickMark.style.fontWeight = '700';
+                      tickMark.style.marginRight = '12px';
+                      tickMark.style.flexShrink = '0';
+                      item.insertBefore(tickMark, item.firstChild);
+                    }
+                  });
+                }
+              };
+              
+              // Apply styles immediately and also after a tiny delay to ensure DOM is ready
+              applyStyles();
+              setTimeout(applyStyles, 0);
+            }
+          });
+        }
+      });
+
+      // Cleanup function
+      return () => {
+        hotspotElements.forEach(element => {
+          if (element._tippy) {
+            element._tippy.destroy();
+          }
+        });
+      };
+    }
+  }, [isInView, hotspots]);
 
   return (
     <section 
@@ -464,31 +654,53 @@ const QuotesSection = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <h2 className="text-3xl md:text-4xl font-display text-primary mb-4">
-            Our Philosophy
+            Discover Our Craftsmanship
           </h2>
-          <div className="w-24 h-1 bg-accent mx-auto mb-6"></div>
           <p className="max-w-2xl mx-auto text-lg text-secondary">
-            The essence of Eden captured in words
+            Explore the details that make Eden furniture exceptional. Click on the highlighted features to learn more.
           </p>
         </motion.div>
 
-        {/* Quotes Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {quotes.map((quote, index) => (
-            <motion.div
-              key={index}
-              className="bg-light-bg p-6 flex items-center justify-center aspect-square"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+        {/* Interactive Feature Image */}
+        <motion.div
+          ref={imageRef}
+          className="relative flex justify-center w-full max-w-4xl mx-auto px-4"
+          style={{ minHeight: '300px' }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          <div className="relative inline-block">
+            <img 
+              src={`${process.env.PUBLIC_URL}/assets/images/products/data/Sofa/ED-601/2.webp`}
+              alt="Eden outdoor furniture showcasing premium features"
+              className="rounded-lg object-contain"
+              style={{ maxHeight: 'max(50vh, 400px)', width: 'auto', height: 'auto' }}
+            />
+            
+            {/* Hotspots */}
+            {hotspots.map((hotspot, index) => (
+            <motion.button
+              key={hotspot.id}
+              className="hotspot absolute w-8 h-8 bg-accent rounded-full border-4 border-white shadow-lg cursor-pointer hover:scale-110 transition-transform duration-200 flex items-center justify-center text-white font-bold text-sm z-10"
+              style={{ left: hotspot.x, top: hotspot.y, transform: 'translate(-50%, -50%)' }}
+              data-hotspot={hotspot.id}
+              initial={{ opacity: 0, scale: 0 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 + (index * 0.1), ease: "easeOut" }}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <p className="text-xl md:text-2xl font-display text-primary text-center">
-                "{quote}"
-              </p>
-            </motion.div>
-          ))}
-        </div>
+              {index + 1}
+              
+              {/* Pulse animation */}
+              <div className="absolute inset-0 rounded-full bg-accent opacity-20 animate-ping"></div>
+            </motion.button>
+            ))}
+          </div>
+        </motion.div>
       </div>
+
     </section>
   );
 };

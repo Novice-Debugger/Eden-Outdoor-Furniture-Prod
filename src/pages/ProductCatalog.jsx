@@ -198,12 +198,6 @@ Let the hours slip by, cradled in quiet motion.`
             >
               {getCategoryDisplayName()}
             </motion.h1>
-            <motion.div
-              className="w-24 h-1 bg-accent mx-auto mb-6"
-              initial={{ width: 0 }}
-              animate={{ width: 96 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            ></motion.div>
             <motion.p
               className="text-lg text-center mx-auto"
               initial={{ opacity: 0 }}

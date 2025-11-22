@@ -6,21 +6,27 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import ProductCatalog from './pages/ProductCatalog';
 import ProductDetail from './pages/ProductDetail';
+import PolicyPrivacy from './pages/PolicyPrivacy';
 import './styles/globals.css';
 
 const App = () => {
   return (
     <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />}/>
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/product/:category" element={<ProductCatalog />} />
-          <Route path="/product/:category/:productId" element={<ProductDetail />} />
-          <Route path="*" element={<Home />} />
-        </Routes>
-      </Layout>
+      <Routes>
+        <Route path="/privacy-policy" element={<PolicyPrivacy />} />
+        <Route path="*" element={
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />}/>
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/product/:category" element={<ProductCatalog />} />
+              <Route path="/product/:category/:productId" element={<ProductDetail />} />
+              <Route path="*" element={<Home />} />
+            </Routes>
+          </Layout>
+        } />
+      </Routes>
     </Router>
   );
 };

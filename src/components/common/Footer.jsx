@@ -232,14 +232,9 @@ const Footer = () => {
           <div className="absolute top-0 left-0 right-0 h-px bg-secondary opacity-50"></div>
           
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="text-sm text-light-bg mb-6 md:mb-0">
+            <Link to="/privacy-policy" className="text-sm text-white hover:text-accent transition-colors">
               © {currentYear} Eden Outdoor Furniture. All rights reserved.
-            </div>
-            <div className="flex flex-wrap justify-center space-x-6 text-xs text-light-bg">
-              <Link to="/privacy-policy" className="hover:text-accent transition-colors">Privacy Policy</Link>
-              <Link to="/terms-of-service" className="hover:text-accent transition-colors">Terms of Service</Link>
-              <Link to="/sitemap" className="hover:text-accent transition-colors">Sitemap</Link>
-            </div>
+            </Link>
           </div>
         </motion.div>
       </div>
